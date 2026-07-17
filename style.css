@@ -523,6 +523,24 @@ section.card::after{ bottom:8px; right:8px; border-width:0 1px 1px 0; }
   color:var(--ink);
   margin-bottom:0.2rem;
 }
+.venue-address,
+.venue-rsvp{
+  display:block;
+  margin-top:0.2rem;
+}
+.venue-map{
+  display:inline-block;
+  margin-top:0.45rem;
+  color:#9CD5FF;
+  font-weight:600;
+  text-decoration:none;
+  border-bottom:1px solid rgba(156,213,255,0.6);
+  transition:opacity 0.2s ease;
+}
+.venue-map:hover,
+.venue-map:focus-visible{
+  opacity:0.8;
+}
 
 footer{
   margin-top:3.4rem;
