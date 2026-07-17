@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamar &amp; Nodo — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= ENVELOPE OPEN ANIMATION ================= -->
+  <div id="envelope-stage">
+    <div class="envelope-wrap" id="envelopeWrap">
+      <div class="envelope-body-front"></div>
+      <div class="envelope-body"></div>
+      <div class="envelope-flap"></div>
+      <div class="seal" id="sealBtn" role="button" tabindex="0" aria-label="Open the invitation">
+        <span>T&amp;N</span>
+      </div>
+      <div class="envelope-hint">tap the seal to open</div>
+    </div>
+  </div>
+
+  <!-- ================= THE LETTER (starts hidden inside envelope, then fills the page) ================= -->
+  <main id="mainContent">
+    <div id="letterInner">
+      <div class="ornament">
+        <span class="line"></span>
+        <span class="mark">✦</span>
+        <span class="line right"></span>
+      </div>
+
+      <p class="eyebrow">Together with their families</p>
+      <h1 class="names">თამარისა<span class="amp">&amp;</span>ნოდოს</h1>
+      <p class="lede">საქორწილო მოსაწვევი ბარათი</p>
+
+      <div class="date-block">
+        <div class="date-day">ხუთშაბათი, 17 სექტემბერი 2026 წ</div>
+        <div class="date-sub">თბილისი, საქართველო</div>
+      </div>
+
+      <section class="card">
+        <h2>დღის განრიგი</h2>
+        <ul class="schedule">
+          <li>
+            <time>4:00 PM</time>
+            <span class="what">Ceremony<small>Guests seated by 3:45 PM</small></span>
+          </li>
+          <li>
+            <time>5:30 PM</time>
+            <span class="what">Cocktail Hour<small>Garden terrace</small></span>
+          </li>
+          <li>
+            <time>7:00 PM</time>
+            <span class="what">Dinner &amp; Toasts<small>Main hall</small></span>
+          </li>
+          <li>
+            <time>9:00 PM</time>
+            <span class="what">Dancing<small>Until late</small></span>
+          </li>
+        </ul>
+      </section>
+
+      <div class="venue">
+        <strong>Venue Name</strong>
+        Address line, City<br>
+        RSVP by 1st of August
+      </div>
+
+      <footer>სიყვარულით, თამარი &amp; ნოდო</footer>
+    </div>
+  </main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
