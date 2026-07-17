@@ -3,11 +3,11 @@
   --cream-deep: #FFFFFF;
   --paper: #FFFFFF;
   --red: #9CD5FF;
-  --red-deep: #9CD5FF;
+  --red-deep: #2da5fb;
   --red-bright: #FFFFFF;
   --gold: #9CD5FF;
-  --ink: #9CD5FF;
-  --ink-soft: rgba(156,213,255,0.88);
+  --ink: #2da5fb;
+  --ink-soft: rgba(111, 193, 252, 0.88);
 }
 
 *{ box-sizing:border-box; }
@@ -24,7 +24,6 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-
 body::before,
 body::after{
   content:"";
@@ -400,7 +399,7 @@ body::after{
 .names{
   font-family:'Cormorant Garamond', serif;
   font-weight:500;
-  font-size:clamp(2rem, 7vw, 3.2rem);
+  font-size:clamp(2.6rem, 9vw, 4.4rem);
   line-height:1.05;
   color:var(--red-deep);
   margin:0.2rem 0 0.4rem;
@@ -441,7 +440,7 @@ body::after{
 
 section.card{
   background:var(--paper);
-  border:1px solid rgba(156,213,255,0.4);
+  border:1px solid rgba(62, 175, 255, 0.4);
   padding:2.6rem 1.8rem;
   margin-top:2.4rem;
   position:relative;
@@ -467,7 +466,7 @@ section.card::after{ bottom:8px; right:8px; border-width:0 1px 1px 0; }
   font-weight:500;
   font-style:italic;
   font-size:1.5rem;
-  color:#9CD5FF;
+  color:#2da5fb;
   margin:0 0 1.6rem;
   letter-spacing:0.02em;
 }
@@ -522,24 +521,6 @@ section.card::after{ bottom:8px; right:8px; border-width:0 1px 1px 0; }
   font-size:1.3rem;
   color:var(--ink);
   margin-bottom:0.2rem;
-}
-.venue-address,
-.venue-rsvp{
-  display:block;
-  margin-top:0.2rem;
-}
-.venue-map{
-  display:inline-block;
-  margin-top:0.45rem;
-  color:#9CD5FF;
-  font-weight:600;
-  text-decoration:none;
-  border-bottom:1px solid rgba(156,213,255,0.6);
-  transition:opacity 0.2s ease;
-}
-.venue-map:hover,
-.venue-map:focus-visible{
-  opacity:0.8;
 }
 
 footer{
