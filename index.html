@@ -17,69 +17,159 @@
 <body>
 
   <!-- reusable floral corner artwork, defined once -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
-      <radialGradient id="roseDeep" cx="35%" cy="30%" r="75%">
-        <stop offset="0%" stop-color="#C9B4E0"/>
-        <stop offset="100%" stop-color="#8F6FB0"/>
-      </radialGradient>
-      <radialGradient id="roseMid" cx="35%" cy="30%" r="75%">
-        <stop offset="0%" stop-color="#E6DAF2"/>
-        <stop offset="100%" stop-color="#B49BCF"/>
-      </radialGradient>
-      <radialGradient id="roseLight" cx="35%" cy="30%" r="75%">
-        <stop offset="0%" stop-color="#FFFFFF"/>
-        <stop offset="100%" stop-color="#F0E9F7"/>
-      </radialGradient>
+      <!-- petal + leaf templates, reused via <use> with rotation -->
+      <path id="petalShape" d="M0,0 C-10,-9 -13,-26 -5,-40 C-2,-46 2,-46 5,-40 C13,-26 10,-9 0,0 Z"/>
+      <path id="petalRound" d="M0,0 C-8,-6 -11,-18 -6,-27 C-3,-32 3,-32 6,-27 C11,-18 8,-6 0,0 Z"/>
+      <path id="leafShape" d="M0,0 C16,-3 30,-15 33,-36 C41,-19 36,-2 16,7 C7,11 -2,9 0,0 Z"/>
+
       <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#A9BE9E"/>
+        <stop offset="0%" stop-color="#B7C9AC"/>
         <stop offset="100%" stop-color="#5D7752"/>
       </linearGradient>
+      <linearGradient id="leafGradDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#8FA680"/>
+        <stop offset="100%" stop-color="#44583B"/>
+      </linearGradient>
 
-      <symbol id="floralCorner" viewBox="0 0 260 260">
-        <!-- vines -->
-        <path d="M6,60 C60,54 100,44 150,20" stroke="#7C9473" stroke-width="2" fill="none" opacity="0.55"/>
-        <path d="M60,6 C54,60 44,100 20,150" stroke="#7C9473" stroke-width="2" fill="none" opacity="0.55"/>
+      <radialGradient id="petalPlumOuter" cx="50%" cy="85%" r="80%">
+        <stop offset="0%" stop-color="#A985C4"/>
+        <stop offset="100%" stop-color="#6B4C93"/>
+      </radialGradient>
+      <radialGradient id="petalPlumInner" cx="50%" cy="85%" r="80%">
+        <stop offset="0%" stop-color="#D9C6EB"/>
+        <stop offset="100%" stop-color="#9B7EBD"/>
+      </radialGradient>
+      <radialGradient id="petalLavOuter" cx="50%" cy="85%" r="80%">
+        <stop offset="0%" stop-color="#DCCBEC"/>
+        <stop offset="100%" stop-color="#B49BCF"/>
+      </radialGradient>
+      <radialGradient id="petalLavInner" cx="50%" cy="85%" r="80%">
+        <stop offset="0%" stop-color="#F3ECFA"/>
+        <stop offset="100%" stop-color="#D3C1E7"/>
+      </radialGradient>
+      <radialGradient id="petalCream" cx="50%" cy="85%" r="80%">
+        <stop offset="0%" stop-color="#FFFFFF"/>
+        <stop offset="100%" stop-color="#F1E9F7"/>
+      </radialGradient>
 
-        <!-- trailing leaves along top edge -->
-        <path d="M110,14 C130,10 148,16 158,28 C144,30 126,28 110,14 Z" fill="url(#leafGrad)" opacity="0.85"/>
-        <path d="M148,22 C166,22 180,30 186,42 C170,42 154,36 148,22 Z" fill="url(#leafGrad)" opacity="0.8"/>
-        <circle cx="176" cy="34" r="4.5" fill="#C9A227" opacity="0.7"/>
-        <circle cx="194" cy="40" r="3.2" fill="#C9B4E0" opacity="0.8"/>
-
-        <!-- trailing leaves along left edge -->
-        <path d="M14,110 C10,130 16,148 28,158 C30,144 28,126 14,110 Z" fill="url(#leafGrad)" opacity="0.85"/>
-        <path d="M22,148 C22,166 30,180 42,186 C42,170 36,154 22,148 Z" fill="url(#leafGrad)" opacity="0.8"/>
-        <circle cx="34" cy="176" r="4.5" fill="#C9A227" opacity="0.7"/>
-        <circle cx="40" cy="194" r="3.2" fill="#C9B4E0" opacity="0.8"/>
-
-        <!-- big leaf mass at corner -->
-        <path d="M10,110 C55,95 85,65 95,20 C115,55 108,90 70,112 C48,124 24,122 10,110 Z" fill="url(#leafGrad)" opacity="0.92"/>
-        <path d="M10,80 C40,72 60,52 65,22 C80,45 74,70 46,84 C30,90 16,88 10,80 Z" fill="url(#leafGrad)" opacity="0.85"/>
-
-        <!-- flower cluster -->
-        <g transform="translate(62,58)">
-          <circle r="30" fill="url(#roseDeep)"/>
-          <circle cx="-11" cy="-8" r="13" fill="url(#roseMid)" opacity="0.95"/>
-          <circle cx="8" cy="10" r="10" fill="#6E4E90" opacity="0.45"/>
+      <!-- a full layered bloom, built from rotated petal instances -->
+      <g id="peonyPlum">
+        <g fill="url(#petalPlumOuter)">
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(0)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(45)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(90)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(135)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(180)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(225)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(270)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(315)"/>
         </g>
-        <g transform="translate(30,32) scale(0.6)">
-          <circle r="30" fill="url(#roseLight)"/>
-          <circle cx="-9" cy="-7" r="12" fill="#FFFFFF" opacity="0.95"/>
+        <g fill="url(#petalPlumInner)" transform="scale(0.6)">
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(20)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(80)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(140)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(200)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(260)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(320)"/>
         </g>
-        <g transform="translate(96,88) scale(0.5)">
-          <circle r="30" fill="url(#roseMid)"/>
-          <circle cx="-9" cy="-7" r="12" fill="url(#roseLight)" opacity="0.9"/>
+        <g fill="#F6EEFB" transform="scale(0.3)">
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(10)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(82)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(154)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(226)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(298)"/>
         </g>
-        <g transform="translate(112,46) scale(0.34)">
-          <circle r="30" fill="url(#roseDeep)"/>
+        <circle r="3.4" fill="#D9A227"/>
+      </g>
+
+      <g id="peonyLavender">
+        <g fill="url(#petalLavOuter)">
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(0)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(51)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(102)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(153)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(204)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(255)"/>
+          <use href="#petalShape" xlink:href="#petalShape" transform="rotate(306)"/>
+        </g>
+        <g fill="url(#petalLavInner)" transform="scale(0.58)">
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(30)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(102)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(174)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(246)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(318)"/>
+        </g>
+        <circle r="3" fill="#D9A227" opacity="0.9"/>
+      </g>
+
+      <g id="roseCream">
+        <g fill="url(#petalCream)">
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(0)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(60)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(120)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(180)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(240)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(300)"/>
+        </g>
+        <g fill="#EADFF3" transform="scale(0.55)">
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(30)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(102)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(174)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(246)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(318)"/>
+        </g>
+        <circle r="2.6" fill="#D9A227"/>
+      </g>
+
+      <g id="blossomSmall">
+        <g fill="url(#petalLavInner)">
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(0) scale(0.5)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(72) scale(0.5)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(144) scale(0.5)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(216) scale(0.5)"/>
+          <use href="#petalRound" xlink:href="#petalRound" transform="rotate(288) scale(0.5)"/>
+        </g>
+        <circle r="1.8" fill="#D9A227"/>
+      </g>
+
+      <symbol id="floralCorner" viewBox="0 0 300 300">
+        <!-- curling stems -->
+        <path d="M4,64 C64,58 108,46 168,18" stroke="#7C9473" stroke-width="1.6" fill="none" opacity="0.5"/>
+        <path d="M64,4 C58,64 46,108 18,168" stroke="#7C9473" stroke-width="1.6" fill="none" opacity="0.5"/>
+
+        <!-- leaf mass anchoring the corner -->
+        <g fill="url(#leafGradDeep)">
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(14,120) rotate(-100) scale(1.5)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(8,86) rotate(-70) scale(1.3)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(120,10) rotate(15) scale(1.5)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(86,6) rotate(-15) scale(1.25)"/>
+        </g>
+        <g fill="url(#leafGrad)">
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(46,74) rotate(-40) scale(1.15)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(74,44) rotate(35) scale(1.15)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(30,150) rotate(-95) scale(0.95)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(150,28) rotate(2) scale(0.95)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(178,46) rotate(20) scale(0.7)"/>
+          <use href="#leafShape" xlink:href="#leafShape" transform="translate(44,180) rotate(-108) scale(0.7)"/>
         </g>
 
-        <!-- tiny buds -->
-        <circle cx="120" cy="70" r="5" fill="#C9A227" opacity="0.8"/>
-        <circle cx="132" cy="86" r="3.6" fill="#B49BCF" opacity="0.85"/>
-        <circle cx="70" cy="120" r="5" fill="#C9A227" opacity="0.8"/>
-        <circle cx="86" cy="132" r="3.6" fill="#B49BCF" opacity="0.85"/>
+        <!-- blooms -->
+        <use href="#peonyPlum" xlink:href="#peonyPlum" transform="translate(70,66) scale(1.05)"/>
+        <use href="#peonyLavender" xlink:href="#peonyLavender" transform="translate(28,34) scale(0.72)"/>
+        <use href="#roseCream" xlink:href="#roseCream" transform="translate(112,96) scale(0.62)"/>
+        <use href="#peonyLavender" xlink:href="#peonyLavender" transform="translate(128,42) scale(0.5)"/>
+        <use href="#roseCream" xlink:href="#roseCream" transform="translate(40,128) scale(0.5)"/>
+        <use href="#blossomSmall" xlink:href="#blossomSmall" transform="translate(150,74) scale(1.4)"/>
+        <use href="#blossomSmall" xlink:href="#blossomSmall" transform="translate(78,142) scale(1.4)"/>
+        <use href="#blossomSmall" xlink:href="#blossomSmall" transform="translate(168,102) scale(1.1)"/>
+
+        <!-- gold accent buds -->
+        <circle cx="138" cy="118" r="3.6" fill="#C9A227" opacity="0.85"/>
+        <circle cx="98" cy="138" r="3" fill="#C9A227" opacity="0.8"/>
+        <circle cx="184" cy="66" r="2.6" fill="#C9A227" opacity="0.75"/>
+        <circle cx="60" cy="176" r="2.6" fill="#C9A227" opacity="0.75"/>
       </symbol>
     </defs>
   </svg>
@@ -103,10 +193,10 @@
 
       <div class="invitation-frame">
 
-        <svg class="corner-floral corner-tl" aria-hidden="true"><use href="#floralCorner"/></svg>
-        <svg class="corner-floral corner-tr" aria-hidden="true"><use href="#floralCorner"/></svg>
-        <svg class="corner-floral corner-bl" aria-hidden="true"><use href="#floralCorner"/></svg>
-        <svg class="corner-floral corner-br" aria-hidden="true"><use href="#floralCorner"/></svg>
+        <svg class="corner-floral corner-tl" aria-hidden="true"><use href="#floralCorner" xlink:href="#floralCorner"/></svg>
+        <svg class="corner-floral corner-tr" aria-hidden="true"><use href="#floralCorner" xlink:href="#floralCorner"/></svg>
+        <svg class="corner-floral corner-bl" aria-hidden="true"><use href="#floralCorner" xlink:href="#floralCorner"/></svg>
+        <svg class="corner-floral corner-br" aria-hidden="true"><use href="#floralCorner" xlink:href="#floralCorner"/></svg>
 
         <div class="frame-content">
 
