@@ -397,15 +397,17 @@ body::after{
 }
 
 .eyebrow.script{
-  font-family:'Mrs Saint Delafield', cursive;
-  font-size:1.9rem;
+  /* use Playwrite (from Google Fonts) as the primary eyebrow script */
+  font-family:'Playwrite DE LA Guides', 'Great Vibes', 'Mrs Saint Delafield', cursive;
+  font-size:1.25rem;
+  font-style:italic;
   font-weight:400;
   color:var(--gold);
-  margin:0 0 1.1rem;
+  margin:0 0 0.9rem;
   letter-spacing:0.01em;
 }
 .eyebrow.script.small{
-  font-size:1.5rem;
+  font-size:1rem;
   margin:2.2rem 0 0;
 }
 
@@ -613,7 +615,7 @@ footer{
   .frame-content{
     padding:4rem 1.2rem 3rem;
   }
-  .eyebrow.script{ font-size:1.5rem; }
+  .eyebrow.script{ font-size:1.05rem; }
   .lede{
     font-size:1.05rem;
   }
